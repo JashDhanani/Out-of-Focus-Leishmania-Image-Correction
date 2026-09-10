@@ -7,7 +7,7 @@ PyTorch reimplementation of:
 > Computational and Structural Biotechnology Journal, 20, 1957-1966.
 > https://doi.org/10.1016/j.csbj.2022.04.003
 
-The original authors' code/data: https://github.com/jiangdat/COMI
+Live demo of this code: https://huggingface.co/spaces/Jash-176/out-of-focus-leishmania-image-correction
 
 ## Method
 
@@ -31,7 +31,7 @@ Generator: 7x7 conv + 2 stride-2 downsampling blocks + 9 ResNet blocks + 2
 transposed-conv upsampling blocks (Johnson et al. style-transfer network).
 Discriminator: 70x70 Markovian PatchGAN.
 
-## Project layout
+<!-- ## Project layout
 
 ```
 .
@@ -53,7 +53,7 @@ Discriminator: 70x70 Markovian PatchGAN.
 ├── evaluate.py             # PSNR/SSIM/PCC on the test split (Table 2/3)
 ├── inference.py            # run a trained G_s on new images (Table/Fig. 5)
 └── data/                   # raw + processed datasets (git-ignored)
-```
+``` -->
 
 ## Setup
 

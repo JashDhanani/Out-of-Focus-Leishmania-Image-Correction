@@ -9,7 +9,7 @@
 
 ## Live Demo
 
-[![Open in Spaces](https://huggingface.co/datasets/huggingface/badges/resolve/main/open-in-hf-spaces-sm.svg)](https://huggingface.co/spaces/Jash-176/out-of-focus-leishmania-image-correction)
+Live demo link of code: https://huggingface.co/spaces/Jash-176/out-of-focus-leishmania-image-correction
 
 ## Method
 

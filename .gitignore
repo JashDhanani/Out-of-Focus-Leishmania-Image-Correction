@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# dataset is large and available separately (see data/README.md) -- keep the repo git-friendly
+data/*
+!data/README.md
+
+# training artifacts
+train_outputs/
+results/*
+!results/.gitkeep

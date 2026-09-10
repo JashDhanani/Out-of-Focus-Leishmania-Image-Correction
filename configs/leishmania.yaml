@@ -1,0 +1,32 @@
+experiment_name: leishmania
+
+dataset:
+  type: leishmania
+  root: data/Leishmania
+  size: 256          # random-crop training resolution (paper trains on the
+                      # full 2304x1728 images; reduce/raise per your GPU memory)
+
+model:
+  base_channels: 64
+  n_resblocks: 9
+  n_discriminator_layers: 3
+
+loss:
+  lambda_gan: 1.0
+  lambda_content: 1.0
+  lambda_cycle: 0.001
+  vgg_layer_index: 26   # relu4_4
+
+train:
+  batch_size: 1
+  total_iters: 100000
+  decay_start_iter: 50000
+  lr: 0.0001
+  beta1: 0.5
+  beta2: 0.99
+  log_every: 100
+  sample_every: 1000
+  checkpoint_every: 5000
+  num_workers: 4
+  seed: 42
+  output_dir: train_outputs/leishmania

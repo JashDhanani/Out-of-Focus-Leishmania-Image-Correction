@@ -1,0 +1,39 @@
+experiment_name: bpaec_nucleus_z004
+
+# The paper trains one model PER (structure, layer) pair (Section 4.2), so
+# Table 3's 18 rows correspond to 18 separately-trained models. Copy this
+# file (or override via CLI) once per combination you want to reproduce,
+# e.g. bpaec_actin_z010.yaml with structure: actin, layer: Z010.
+dataset:
+  type: bpaec
+  root: data/BPAEC
+  structure: nucleus   # one of: nucleus, actin, mitochondria
+  layer: Z004           # one of: Z004, Z005, Z006, Z008, Z009, Z010
+  size: 512            # paper resizes the raw 1024x1024 images to 512x512
+  train_ratio: 0.8
+  seed: 42
+
+model:
+  base_channels: 64
+  n_resblocks: 9
+  n_discriminator_layers: 3
+
+loss:
+  lambda_gan: 1.0
+  lambda_content: 1.0
+  lambda_cycle: 0.001
+  vgg_layer_index: 26   # relu4_4
+
+train:
+  batch_size: 1
+  total_iters: 100000
+  decay_start_iter: 50000
+  lr: 0.0001
+  beta1: 0.5
+  beta2: 0.99
+  log_every: 100
+  sample_every: 1000
+  checkpoint_every: 5000
+  num_workers: 4
+  seed: 42
+  output_dir: train_outputs/bpaec_nucleus

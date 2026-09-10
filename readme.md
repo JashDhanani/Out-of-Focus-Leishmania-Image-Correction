@@ -7,7 +7,9 @@
 > Computational and Structural Biotechnology Journal, 20, 1957-1966.
 > https://doi.org/10.1016/j.csbj.2022.04.003 -->
 
-Live demo of this code: https://huggingface.co/spaces/Jash-176/out-of-focus-leishmania-image-correction
+## Live Demo
+
+Link: https://huggingface.co/spaces/Jash-176/out-of-focus-leishmania-image-correction
 
 ## Method
 

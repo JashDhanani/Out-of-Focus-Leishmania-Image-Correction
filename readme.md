@@ -1,11 +1,11 @@
-# Out-of-Focus Microscopic Image Correction (CycleGAN)
+# Out-of-Focus Microscopic Image Correction Using CycleGAN
 
-PyTorch reimplementation of:
+<!-- PyTorch reimplementation of:
 
 > Zhang, C., Jiang, H., Liu, W., Li, J., Tang, S., Juhas, M., & Zhang, Y. (2022).
 > *Correction of out-of-focus microscopic images by deep learning.*
 > Computational and Structural Biotechnology Journal, 20, 1957-1966.
-> https://doi.org/10.1016/j.csbj.2022.04.003
+> https://doi.org/10.1016/j.csbj.2022.04.003 -->
 
 Live demo of this code: https://huggingface.co/spaces/Jash-176/out-of-focus-leishmania-image-correction
 
@@ -19,16 +19,16 @@ trained with a **multi-component weighted loss**:
 L = lambda1 * L_GAN + lambda2 * L_content + lambda3 * L_cycle
 ```
 
-- `L_GAN`: vanilla adversarial loss (Eq. 5)
+- `L_GAN`: vanilla adversarial loss 
 - `L_content`: VGG-19 perceptual/feature loss between generated and the
-  *paired* ground-truth image (Eq. 6-8) -- this dataset is paired, so the
+  *paired* ground-truth image -- this dataset is paired, so the
   content loss can supervise directly rather than relying on cycle
   consistency alone
-- `L_cycle`: L1 cycle-consistency loss (Eq. 9)
-- Defaults from the paper: `lambda1=1, lambda2=1, lambda3=0.001`
+- `L_cycle`: L1 cycle-consistency loss
+- Hyperparameters: `lambda1=1, lambda2=1, lambda3=0.001`
 
 Generator: 7x7 conv + 2 stride-2 downsampling blocks + 9 ResNet blocks + 2
-transposed-conv upsampling blocks (Johnson et al. style-transfer network).
+transposed-conv upsampling blocks.
 Discriminator: 70x70 Markovian PatchGAN.
 
 <!-- ## Project layout
@@ -64,7 +64,7 @@ pip install -r requirements.txt
 
 ## Data
 
-The two self-collected datasets used to train and test this paper are
+The two publicaly available datasets used to train and test this paper are
 in `data/m3jxgb54c9-4.zip` (Mendeley Data). See `data/README.md` for what
 it contains. Unzip it in place:
 
@@ -78,18 +78,16 @@ what `configs/leishmania.yaml` and `configs/bpaec.yaml` point at.
 ## Training
 
 ```bash
-# Dataset 1: Leishmania (bright-field)
+# Dataset 1: Leishmania
 python train.py --config configs/leishmania.yaml
 
-# Dataset 2: BPAEC (confocal fluorescence) -- one model per structure x layer,
-# see the comment in configs/bpaec.yaml
+# Dataset 2: BPAEC
 python train.py --config configs/bpaec.yaml
 ```
 
 100,000 iterations, batch size 1, Adam (lr=1e-4, beta1=0.5, beta2=0.99),
 linearly decayed to 0 after the first 50,000 iterations -- matching
-Section 3.3. Checkpoints and sample image grids are written under
-`train_outputs/<experiment_name>/`.
+Section 3.3.
 
 ## Evaluation
 
@@ -109,12 +107,10 @@ python inference.py \
     --output results/corrected
 ```
 
-To reproduce the BBBC006 zero-shot generalization experiment (Section
-4.3): download that dataset separately (see
-`scripts/download_bbbc006.py`) and feed it straight into a BPAEC-trained
+To correct the BPAEC Nucleus z004 images, download the dataset and feed it straight into a BPAEC-trained
 checkpoint with no further training.
 
-## Notes / deviations from the paper
+<!-- ## Notes / deviations from the paper
 
 - The paper trains in Keras/TensorFlow on a single Tesla K40C; this is a
   from-scratch PyTorch reimplementation, not a port of the original code.
@@ -122,4 +118,4 @@ checkpoint with no further training.
   (3 structures x 6 defocus layers), each specific to one blur level --
   `configs/bpaec.yaml` trains one such combination at a time.
 - SSIM/PSNR here use `scikit-image`'s standard windowed implementations
-  rather than a literal single-window transcription of Eq. 2.
+  rather than a literal single-window transcription of Eq. 2. -->

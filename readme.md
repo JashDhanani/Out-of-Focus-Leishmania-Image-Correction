@@ -1,4 +1,4 @@
-# Out-of-Focus Microscopic Image Correction Using CycleGAN
+# Out-of-Focus Microscopic Image Correction Using CycleGAN 
 
 <!-- PyTorch reimplementation of:
 
